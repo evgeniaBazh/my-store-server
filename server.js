@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 
@@ -16,7 +15,7 @@ checkDbConnect();
 
 const port = 8000;
 app.use(cors());
-app.use(bodyParser());
+app.use(express.json());
 require("./app/routes")(app, sequelize);
 app.listen(port, () => {
   console.log("We are live on " + port);
