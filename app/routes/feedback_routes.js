@@ -23,7 +23,6 @@ module.exports = async (app, db) => {
   });
   app.get("/feedbacks", async (req, res) => {
     const feedbacks = await Feedback.findAll();
-    console.log(feedbacks);
     res.send(feedbacks);
   });
 };
