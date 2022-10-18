@@ -16,9 +16,15 @@ async function main() {
 main();
 
 const port = 8000;
-app.use(express.json()); //преобразование json
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb" }));
 app.use(express.static("static"));
-app.use(fileUpload({}));
+app.use(cors());
+app.use(
+  fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+  }),
+);
 app.use("/api", router);
 
 app.listen(port, () => {
