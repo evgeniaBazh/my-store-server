@@ -15,6 +15,7 @@ class ProductController {
     if (category) {
       try {
         const products = await ProductService.getByCategory(category);
+        console.log(products);
         res.json(products);
       } catch (e) {
         res.status(500).json(e);
