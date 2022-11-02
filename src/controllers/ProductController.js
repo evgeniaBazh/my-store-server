@@ -11,6 +11,16 @@ class ProductController {
   }
 
   async getAll(req, res) {
+    const category = req.query.name;
+    if (category) {
+      try {
+        const products = await ProductService.getByCategory(category);
+        res.json(products);
+      } catch (e) {
+        res.status(500).json(e);
+      }
+      return;
+    }
     try {
       const products = await ProductService.getAll();
       res.json(products);

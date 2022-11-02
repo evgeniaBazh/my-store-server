@@ -10,7 +10,16 @@ class ProductService {
 
   async getAll() {
     const products = await Product.find();
-    return products;
+    return products.map((product) => {
+      return { ...product, img: "http://localhost:8000/" + product.img };
+    });
+  }
+
+  async getByCategory(category) {
+    const products = await Product.find({ category });
+    return products.map((product) => {
+      return { ...product, img: "http://localhost:8000/" + product.img };
+    });
   }
 
   async getOne(id) {
